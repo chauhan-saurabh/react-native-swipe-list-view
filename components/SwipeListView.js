@@ -63,6 +63,7 @@ class SwipeListView extends PureComponent {
     }
 
     rowSwipeGestureBegan(key) {
+        console.log(key)
         if (
             this.props.closeOnRowBeginSwipe &&
             this.openCellKey &&
@@ -170,6 +171,14 @@ class SwipeListView extends PureComponent {
                 row.manuallySwipeRow(toValue);
             }
         });
+    }
+
+    openRow(rowKey, toValue) {
+        this.closeAllOpenRows();
+        const row = this._rows[rowKey];
+        if (row && row.manuallySwipeRow) {
+            row.manuallySwipeRow(toValue);
+        }
     }
 
     renderCell(VisibleComponent, HiddenComponent, key, item, shouldPreviewRow) {
